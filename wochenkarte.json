@@ -1,0 +1,40 @@
+{
+  "wochenkarte": {
+    "zeitraum": "15. Dezember bis 21. Dezember 2025",
+    "uhrzeit": "Täglich von 11:30 bis 14:00 Uhr",
+    "hinweis": "Zu jedem Gericht gibt's a kleins Salätle dazu.",
+    "tage": [
+      {
+        "tag": "Montag",
+        "verfuegbar": false,
+        "info": "Heit gibt's koi Mittagessen. Mir schaffet in d'r Vorbereitung."
+      },
+      {
+        "tag": "Dienstag",
+        "verfuegbar": true,
+        "gericht": "Gefüllte Paprikaschote",
+        "beilage": "mit Tomatensoße und Butterreis",
+        "preis": "12,50"
+      },
+      {
+        "tag": "Mittwoch",
+        "verfuegbar": true,
+        "gericht": "Hausgemachter Fleischkäse",
+        "beilage": "mit zwei Spiegeleiern und Kartoffelsalat",
+        "preis": "11,80"
+      },
+      {
+        "tag": "Donnerstag",
+        "verfuegbar": true,
+        "gericht": "Linsen mit Saitenwürstle",
+        "beilage": "und handgschabte Spätzle",
+        "preis": "12,20"
+      },
+      {
+        "tag": "Freitag",
+        "verfuegbar": false,
+        "info": "Freitags gibt's koi Mittagessen – da bereitiet mir uns auf's Wochenende vor."
+      }
+    ]
+  }
+}
