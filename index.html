@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S' Bootshaus Neckarsulm | Offizielle Karte</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
+        .text-gold { color: #D4AF37; }
+        .bg-gold { background-color: #D4AF37; }
+        .border-gold { border-color: #D4AF37; }
+        .allergen { font-size: 0.65rem; color: #999; font-weight: normal; margin-left: 4px; }
+        .hidden-content { display: none; }
+        
+        @media print {
+            nav, .no-print, footer, header, .toggle-btn { display: none !important; }
+            .hidden-content { display: block !important; }
+            body { background: white !important; color: black !important; padding: 0; }
+            .print-container { width: 100%; border: none !important; box-shadow: none !important; }
+            .print-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+    </style>
+</head>
+<body class="bg-[#FDFCF9] text-gray-900">
+
+    <nav class="no-print fixed w-full z-50 bg-black/95 text-white px-6 py-4 flex justify-between items-center border-b border-gold/30">
+        <div class="text-xl font-serif font-bold text-gold italic">S' Bootshaus</div>
+        <div class="flex space-x-3">
+            <button onclick="printArea('wochenkarte')" class="text-[9px] border border-gold text-gold px-3 py-1 font-bold tracking-widest hover:bg-gold hover:text-white transition">🖨️ WOCHE</button>
+            <button onclick="printArea('speisekarte')" class="text-[9px] bg-gold text-white px-3 py-1 font-bold tracking-widest hover:bg-yellow-600 transition">🖨️ KARTE</button>
+        </div>
+    </nav>
+
+    <header class="no-print relative h-[50vh] flex items-center justify-center overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1558030006-450675393462?q=80&w=2000&auto=format" class="absolute w-full h-full object-cover opacity-80" alt="Hero">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent"></div>
+        <div class="relative z-20 text-center text-white px-4">
+            <h1 class="text-5xl md:text-7xl italic mb-4">Heimat & Genuss</h1>
+            <p class="text-gold tracking-[0.5em] uppercase text-xs font-semibold">Willkommen am Neckarufer</p>
+        </div>
+    </header>
+
+    <div class="max-w-5xl mx-auto px-6 py-16 space-y-12">
+        
+        <section id="wochenkarte" class="bg-white shadow-xl rounded-sm border border-gray-100 print-container">
+            <div class="p-10 text-center">
+                <h2 class="text-3xl italic font-serif mb-2">Wochenkarte</h2>
+                <div id="woche-loader" class="no-print">
+                    <p class="text-gray-500 text-sm mb-6 italic">Frische Angebote für diese Woche.</p>
+                    <button onclick="fetchData('woche')" class="toggle-btn bg-black text-white px-10 py-3 text-xs font-bold uppercase tracking-widest hover:bg-gold transition">Karte laden & öffnen</button>
+                </div>
+            </div>
+            <div id="woche-content" class="hidden-content p-10 border-t-2 border-gold/10 bg-white">
+                <div class="text-center mb-8">
+                    <h3 id="print-woche-title" class="hidden print:block text-2xl font-serif font-bold mb-1 uppercase">Wochenkarte Mittagstisch</h3>
+                    <p id="woche-datum" class="text-gold font-bold tracking-widest uppercase text-sm"></p>
+                </div>
+                <div id="woche-grid" class="grid md:grid-cols-3 gap-6 mb-12"></div>
+                <h4 class="font-serif text-2xl italic mb-6 border-b pb-2">Täglich im Angebot</h4>
+                <div id="daily-list" class="grid md:grid-cols-2 gap-x-12 gap-y-2 text-[13px] print-grid"></div>
+            </div>
+        </section>
+
+        <section id="speisekarte" class="bg-white shadow-xl rounded-sm border border-gray-100 print-container">
+            <div class="p-10 text-center">
+                <h2 class="text-3xl italic font-serif mb-2">Speiskart</h2>
+                <div id="karte-loader" class="no-print">
+                    <p class="text-gray-500 text-sm mb-6 italic">Suppen, Steaks, Burger & Klassiker.</p>
+                    <button onclick="fetchData('karte')" class="toggle-btn border-2 border-black text-black px-10 py-3 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition">Speisekarte öffnen</button>
+                </div>
+            </div>
+            <div id="karte-content" class="hidden-content p-10 border-t-2 border-gold/10">
+                <h3 class="hidden print:block text-center text-3xl font-serif mb-10">Unsere Speiskart</h3>
+                <div id="full-menu-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10"></div>
+            </div>
+        </section>
+
+        <section id="events" class="bg-white shadow-xl rounded-sm border border-gray-100 no-print">
+            <div class="p-10 text-center bg-[#F9F7F2]">
+                <h2 class="text-3xl italic font-serif mb-2">Festlichkeiten</h2>
+                <p class="text-gray-500 text-sm mb-6 italic">Feiern Sie Hochzeiten & Geburtstage bei uns.</p>
+                <button onclick="fetchData('events')" class="bg-gold text-white px-10 py-3 text-xs font-bold uppercase tracking-widest hover:bg-yellow-600 transition">Mehr erfahren</button>
+            </div>
+            <div id="events-content" class="hidden-content p-10 border-t-2 border-gold bg-white text-center">
+                <div id="events-data" class="max-w-2xl mx-auto"></div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="no-print py-12 bg-black text-center">
+        <p class="text-gold font-serif italic text-xl mb-4">S' Bootshaus Neckarsulm</p>
+        <p class="text-white/30 text-[10px] uppercase tracking-[0.4em]">&copy; 2025 Alle Rechte vorbehalten</p>
+    </footer>
+
+    <script>
+        async function fetchData(type) {
+            const content = document.getElementById(type + '-content');
+            
+            if(content.style.display === 'block') {
+                content.style.display = 'none';
+                return;
+            }
+
+            try {
+                const res = await fetch(type + '.json');
+                const data = await res.json();
+                
+                if(type === 'woche') renderWoche(data);
+                if(type === 'karte') renderKarte(data);
+                if(type === 'events') renderEvents(data);
+
+                content.style.display = 'block';
+            } catch (e) {
+                alert("Fehler: " + type + ".json wurde nicht gefunden!");
+            }
+        }
+
+        function renderWoche(d) {
+            document.getElementById('woche-datum').innerText = d.datum;
+            document.getElementById('woche-grid').innerHTML = d.specials.map(s => `
+                <div class="bg-gray-50 p-5 border-l-4 border-gold">
+                    <span class="text-[10px] font-bold text-gold uppercase">${s.tag}</span>
+                    <div class="flex justify-between font-bold text-sm mt-1"><span>${s.name}</span><span>${s.preis}</span></div>
+                    <p class="text-[11px] italic text-gray-500 mt-1">${s.beilage}</p>
+                </div>
+            `).join('');
+            document.getElementById('daily-list').innerHTML = d.taeglich.map(i => `
+                <div class="flex justify-between border-b py-2 italic">
+                    <span>${i.n} <span class="allergen">${i.a || ''}</span></span>
+                    <b class="text-gold">${i.p}</b>
+                </div>
+            `).join('');
+        }
+
+        function renderKarte(d) {
+            document.getElementById('full-menu-grid').innerHTML = d.kategorien.map(k => `
+                <div>
+                    <h4 class="text-gold font-serif text-xl border-b border-gold/20 pb-1 mb-6 italic">${k.name}</h4>
+                    ${k.gerichte.map(g => `
+                        <div class="flex justify-between mb-4 font-bold text-[11px] uppercase tracking-wider">
+                            <span>${g.n} <span class="allergen">${g.a || ''}</span></span>
+                            <span>${g.p}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+        }
+
+        function renderEvents(d) {
+            document.getElementById('events-data').innerHTML = `
+                <h4 class="text-2xl font-serif italic mb-4">${d.titel}</h4>
+                <p class="text-gray-600 mb-8 italic text-sm">${d.text}</p>
+                <div class="bg-gray-50 p-8 border-t-4 border-gold">
+                    <p class="uppercase text-[10px] tracking-widest mb-2">Kontakt für Reservierungen</p>
+                    <p class="text-3xl font-serif italic">${d.telefon}</p>
+                </div>
+            `;
+        }
+
+        function printArea(id) {
+            // Erst Daten laden, falls noch nicht geschehen
+            fetchData(id).then(() => {
+                const sections = ['wochenkarte', 'speisekarte'];
+                sections.forEach(s => {
+                    const el = document.getElementById(s);
+                    if(s === id) {
+                        el.classList.remove('print-hidden');
+                        document.getElementById(s + '-content').style.display = 'block';
+                    } else {
+                        el.classList.add('print-hidden');
+                    }
+                });
+                setTimeout(() => { window.print(); }, 500);
+            });
+        }
+    </script>
+</body>
+</html>

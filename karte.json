@@ -1,0 +1,26 @@
+{
+  "kategorien": [
+    {
+      "name": "Suppen",
+      "gerichte": [
+        {"n": "Maultaschensuppe", "a": "(A,C,G,I)", "p": "4,80 €"},
+        {"n": "Currycremesuppe", "a": "(G,B)", "p": "5,50 €"}
+      ]
+    },
+    {
+      "name": "Vom Schwein",
+      "gerichte": [
+        {"n": "Schnitzel m. Brot", "a": "(A,C)", "p": "8,50 €"},
+        {"n": "Cordon Bleu m. Pommes", "a": "(A,C,G)", "p": "15,00 €"},
+        {"n": "Jägerschnitzel m. Spätzle", "a": "(G,I)", "p": "13,50 €"}
+      ]
+    },
+    {
+      "name": "Burger",
+      "gerichte": [
+        {"n": "Bootshaus-Burger XL", "a": "(3,I)", "p": "8,00 €"},
+        {"n": "Cheese-Burger XL", "a": "(G,I)", "p": "8,50 €"}
+      ]
+    }
+  ]
+}

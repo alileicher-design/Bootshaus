@@ -1,0 +1,23 @@
+{
+  "datum": "15.12. - 19.12.2025",
+  "specials": [
+    {"tag": "Dienstag", "name": "Parmesanschnitzel", "beilage": "mit Spaghetti", "preis": "9,00 €"},
+    {"tag": "Mittwoch", "name": "Pfeffersteak", "beilage": "mit Pommes", "preis": "9,00 €"},
+    {"tag": "Donnerstag", "name": "Putengyros", "beilage": "mit Zaziki", "preis": "9,00 €"}
+  ],
+  "taeglich": [
+    {"n": "1. Rostbraten, Spätzle & Salat", "a": "(I,J)", "p": "21,00 €"},
+    {"n": "2. Cordon Bleu, Pommes & Salat", "a": "(A,C,G)", "p": "15,00 €"},
+    {"n": "3. Putenschnitzel, Pommes & Salat", "a": "(A,C)", "p": "14,50 €"},
+    {"n": "4. Pan. Schnitzel, Pommes & Salat", "a": "(A,C)", "p": "12,50 €"},
+    {"n": "5. Rahmschnitzel, Spätzle & Salat", "a": "(G,I)", "p": "13,00 €"},
+    {"n": "6. Maultaschen m. Ei & Kartoffelsalat", "a": "(A,C,I)", "p": "8,20 €"},
+    {"n": "7. Fleischkäse m. Kartoffelsalat", "a": "(I)", "p": "8,20 €"},
+    {"n": "8. Käsespätzle m. Salatbeilage", "a": "(A,C,G)", "p": "9,50 €"},
+    {"n": "9. Gr. ital. Salat, Thunfisch, Ei", "a": "(C,D,J)", "p": "9,50 €"},
+    {"n": "10. Gr. Salatteller, Käse & Schinken", "a": "(G,J)", "p": "9,50 €"},
+    {"n": "11. Kleiner Salatteller", "a": "(I,J)", "p": "4,00 €"},
+    {"n": "12. Gr. Salatteller m. Maultaschen", "a": "(A,I,J)", "p": "10,20 €"},
+    {"n": "13. Gr. Salatteller m. Putenstreifen", "a": "(I,J)", "p": "12,00 €"}
+  ]
+}
